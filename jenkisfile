@@ -1,0 +1,34 @@
+    pipeline {
+        agent any
+        stages {
+            stage ('S1') {
+                steps {
+                    echo "Command in stage 1"   
+                }
+            }
+            stage ('S2') {
+                steps {
+                    echo "Command in stage 2"   
+                }
+            }
+            stage ('S3') {
+                steps {
+                    echo "Command in stage 3"   
+                }
+            }
+        }
+        post {
+            always {
+                // Archieve tets reports
+                echo "I will always run"     
+            }
+            success {
+                // Only execute if the tests pass
+                echo "Test passed successfully"     
+            }
+            failure {
+                // Execute if the tests fail
+                echo "Test failed"     
+            }
+        }
+    }
